@@ -42,6 +42,7 @@ module.exports = (db) => {
             return cartCollection.findOneAndUpdate(
                 { userID: ObjectId(userID) },
                 { $push: { products: productID }},
+                {returnOriginal: false},
                 { deletedAt: {
                     $exists: false
                 }}
@@ -53,6 +54,7 @@ module.exports = (db) => {
             return cartCollection.findOneAndUpdate(
                 { userID: ObjectId(userID) },
                 {$set: {products: productArray}},
+                {returnOriginal: false},
                 { deletedAt: {
                     $exists: false
                 }}

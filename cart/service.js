@@ -39,7 +39,7 @@ module.exports = (repository) => {
         },
 
         async addToCart(productID, userID) {
-            return repository.addToCart(productID, userID)
+            return await repository.addToCart(productID, userID)
         },
 
         async removeFromCart(productID, userID) {
