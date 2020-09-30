@@ -25,7 +25,7 @@ module.exports = (cartService) => {
       router.get('/:userID/group-product', async ({params:{userID}}, response, next) => {
         try {
           const cart = await cartService.groupSameProductInCartAndCalculateTotalPrice(userID);
-    
+
           if (!cart) { 
             return response.send([]);
           } else {
@@ -39,8 +39,9 @@ module.exports = (cartService) => {
       //create a cart for the user if a cart for them doesn't exist
       router.post('/create-cart', async ({body: {productID, userID}}, response, next) => {
         try {
-           await cartService.createCart(productID, userID)
-           return response.sendStatus(201)
+           const cart = await cartService.createCart(productID, userID)
+           const products = cart.ops.products
+           return response.send(products)
         } catch (err) {
           return next(err);
         }
@@ -49,8 +50,9 @@ module.exports = (cartService) => {
       //updates cart
       router.put('/add-to-cart', async({body: {productID, userID}}, response, next) => {
         try {
-          await cartService.addToCart(productID, userID)
-          return response.sendStatus(201)
+          const cart = await cartService.addToCart(productID, userID)
+          const products = cart.value.products
+          return response.send(products)
         } catch(err) {
           return next(err)
         }
@@ -58,8 +60,9 @@ module.exports = (cartService) => {
 
       router.put('/remove-from-cart', async({body: {productID, userID}}, response, next) => {
         try {
-          await cartService.removeFromCart(productID, userID)
-          return response.sendStatus(201)
+          const cart = await cartService.removeFromCart(productID, userID)
+          const products = cart.value.products
+          return response.send(products)
         } catch(err) {
           return next(err)
         }

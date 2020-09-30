@@ -38,10 +38,10 @@ module.exports = (db) => {
             )
         },
 
-        addToCart(productInCart, userID) {
-            return cartCollection.update(
+        addToCart(productID, userID) {
+            return cartCollection.findOneAndUpdate(
                 { userID: ObjectId(userID) },
-                { $push: { products: productInCart }},
+                { $push: { products: productID }},
                 { deletedAt: {
                     $exists: false
                 }}
@@ -50,7 +50,7 @@ module.exports = (db) => {
         },
 
         removeFromCart(productArray, userID) {
-            return cartCollection.update(
+            return cartCollection.findOneAndUpdate(
                 { userID: ObjectId(userID) },
                 {$set: {products: productArray}},
                 { deletedAt: {
@@ -60,7 +60,7 @@ module.exports = (db) => {
         },
 
         clearCartByUserID(userID) {
-            return cartCollection.update(
+            return cartCollection.findOneAndUpdate(
                 { userID: ObjectId(userID) },
                 { $unset: {
                     products: []
