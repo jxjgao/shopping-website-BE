@@ -11,7 +11,6 @@ module.exports = (repository) => {
         async createOrder(name, address, postalCode, country, email, paymentType, cart, userID, price, shippingMethod) {
             return repository.createOrder(name, address, postalCode, country, email, paymentType, cart, userID, price, shippingMethod)
         }
-
     }
     return orderService
 };

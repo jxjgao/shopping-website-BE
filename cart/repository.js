@@ -45,8 +45,7 @@ module.exports = (db) => {
                 {returnOriginal: false},
                 { deletedAt: {
                     $exists: false
-                }}
-                
+                }} 
             )
         },
 
@@ -69,8 +68,6 @@ module.exports = (db) => {
                 }}
             );
         }
-
-
     }
     return repository
 };

@@ -18,8 +18,6 @@ module.exports = (db) => {
         findAllProduct() {
             return productCollection.find().toArray();
         }
-
-
     }
     return repository
 };

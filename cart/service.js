@@ -18,6 +18,7 @@ module.exports = (repository) => {
 
             const cart = await repository.findCartByUserID(userID, {products: true});
             const productArray = cart.products
+            //returns an array like this [{productID: key, count: val}]
             const countArray = _.map(_.countBy(productArray), (val, key) => ({productID: key, count: val }));
 
             if (cart.products.length !== 0) {
@@ -30,7 +31,7 @@ module.exports = (repository) => {
             }
             
             return [organizedCart, totalPrice]
-    },
+        },
 
         async createCart(productID, userID) {
             const productArray = []
@@ -54,15 +55,12 @@ module.exports = (repository) => {
                     found = 1;
                 }
             }
-
             return repository.removeFromCart(productArray, userID)
         },
 
         clearCartByUserID(userID) {
             return repository.clearCartByUserID(userID)
         }
-
-
     }
     return cartService
 };
