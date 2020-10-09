@@ -17,6 +17,7 @@
     "lodash": "4.17.20",
     "mongodb": "2.2.25",
     "mongoose": "5.10.5",
-    "nodemon": "2.0.4"
+    "nodemon": "2.0.4",
+    "serve": "11.3.2"
   }
 }
