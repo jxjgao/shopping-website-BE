@@ -15,13 +15,19 @@ const Cart = require('./cart');
 const Order = require('./order');
 
 async function main() {
-    const db = await MongoClient.connect(mongoUri);
-
-    application.use('/health', Health());
-    application.use('/product', Product(db));
-    application.use('/cart', Cart(db));
-    application.use('/order', Order(db));
+  let db;
+  MongoClient.connect(mongoUri, (error, database) => {
+      if (error) return process.exit(1);
+      console.log('Connection is okay');
     
+      db = database.db('shopping_website');
+
+      application.use('/health', Health());
+      application.use('/product', Product(db));
+      application.use('/cart', Cart(db));
+      application.use('/order', Order(db));
+  }); 
+  
 
     const server = application.listen(port, () => {
         const host = server.address().address;

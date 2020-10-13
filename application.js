@@ -11,6 +11,7 @@ module.exports = () => {
     credentials: true,
     origin: true
   };
+  
   application.use(Cors(corsOptions));
   application.options('*', Cors(corsOptions));
 

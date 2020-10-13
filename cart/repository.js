@@ -63,7 +63,7 @@ module.exports = (db) => {
         clearCartByUserID(userID) {
             return cartCollection.findOneAndUpdate(
                 { userID: ObjectId(userID) },
-                { $unset: {
+                { $set: {
                     products: []
                 }}
             );

@@ -15,7 +15,7 @@
     "express": "4.17.1",
     "format-error": "1.0.0",
     "lodash": "4.17.20",
-    "mongodb": "2.2.25",
+    "mongodb": "3.6.2",
     "mongoose": "5.10.5",
     "nodemon": "2.0.4",
     "serve": "11.3.2"
